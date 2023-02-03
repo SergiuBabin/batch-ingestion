@@ -1,0 +1,82 @@
+server:
+  port: 9999
+
+lines:
+  skip:
+    contactsReader: 1
+
+input:
+  file1: InputFiles/legal-entity.csv
+  file2: InputFiles/legal-entity2.csv
+  file3: InputFiles/legal-entity3.csv
+  file4: InputFiles/contacts1.csv
+
+
+report:
+  path:
+    general: /Users/user1/Desktop/itss-batch-ingestion/src/main/resources/reports
+    job: ${report.path.general}/{0}
+    errors: ${report.path.job}/errors
+
+write:
+  api:
+    contact-manager: http://localhost:8081/contact-manager/integration-api/v2/contacts/bulk
+    legal-entity: TBD
+
+logging:
+  level:
+    root: INFO
+    itss.batch.ingestion: DEBUG
+    org.springframework: INFO
+    org.springframework.web: DEBUG
+    org.springframework.ws.client.MessageTracing.sent: INFO
+    org.springframework.ws.client.MessageTracing.received: INFO
+    org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG
+    org.apache.http: WARN
+    com.netflix.discovery.DiscoveryClient: WARN
+    reactor.netty.http.client: WARN
+    springframework.orm.jpa: WARN
+    org.springframework.transaction: WARN
+    org.springframework.transaction.interceptor: WARN
+    org.springframework.orm.jpa: WARN
+    org.hibernate.engine.transaction.internal.TransactionImpl: WARN
+
+spring:
+  datasource:
+#    url: jdbc:mysql://${CAMUNDA_MYSQL_HOST:localhost}:${CAMUNDA_MYSQL_PORT:3306}/${CAMUNDA_MYSQL_DATABASE_NAME:batch-ingestion}
+#    continue-on-error: true
+#    username: root
+#    password: root
+    url: jdbc:mysql://localhost:3306/springbatch
+    continue-on-error: true
+    username: root
+    password: gts-5230
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: false
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false
+      ddl-auto: none
+  liquibase:
+    enabled: true
+    change-log: classpath:db/master_changelog.yml
+  batch:
+    job:
+      enabled: false
+#    jdbc:
+#      initialize-schema: always
+
+job:
+  name:
+    contacts: "ContactsJob"
+    transfers: "TransfersJob"
+    savings: "SavingsJob"
+
+#modulesConfigs:
+#  contacts:
+#    ingestMode: UPSERT
+#    scope: USER
+
