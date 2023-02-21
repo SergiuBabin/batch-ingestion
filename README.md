@@ -1,4 +1,4 @@
-# atch-ingestion
+# Batch-ingestion
 This repository is for batch processing and ingestions
 
 ## Project description:
