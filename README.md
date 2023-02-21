@@ -1,9 +1,9 @@
-# itss-batch-ingestion
+# atch-ingestion
 This repository is for batch processing and ingestions
 
 ## Project description:
 
-**itss-batch-ingestion** project is design for data migration process (contacts, transfers, products etc.).
+**-batch-ingestion** project is design for data migration process (contacts, transfers, products etc.).
 
 The project uses at its core spring-batch framework that reads raw data from a **.csv** file, validates it, maps it to a request body and makes a call to an **integration-api** service (as of now to Contacts Bulk Import Api). You can check the status of a run job(s) and also at the end of the job(s) execution, a report is being generated.
 
@@ -63,7 +63,7 @@ To start up the application
 
 ## Running the App DEV Environment:
 
-The endpoint for **itss-batch-ingestion** is not exposed for the public, therefore you need to access DEV Kubernetes container and obtain a list of PODs by running:  
+The endpoint for **batch-ingestion** is not exposed for the public, therefore you need to access DEV Kubernetes container and obtain a list of PODs by running:  
 
 `kubectl get pods --namespace=backbase`
 
@@ -243,7 +243,7 @@ Swagger Doc is integrated in the project and can be accessed by following links 
 
 <br><br>
 
-# ITSS-BATCH-INGESTION APIs signature:
+# BTCH-INGESTION APIs signature:
 
 ### 1. Run Ingestion Job
 
